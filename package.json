@@ -1,0 +1,15 @@
+{
+  "name": "lincoln_demo",
+  "version": "1.0.0",
+  "description": "Ecommerce demo for Lincoln",
+  "main": "server,js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server"
+  },
+  "author": "Carlos Velazquez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

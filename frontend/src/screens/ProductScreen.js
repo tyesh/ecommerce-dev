@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from 'react-bootstrap';
 import Rating from '../components/Rating';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { listProductDetails } from '../actions/productActions';
 import Loader from '../components/loader';
 import Message from '../components/Message';
 
-const ProductScreen = () => {
+const ProductScreen = ({ history }) => {
   const params = useParams();
+  const navigate = useNavigate();
+  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -18,6 +28,10 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch(listProductDetails(params.id));
   }, [dispatch, params.id]);
+
+  const addToCartHandler = () => {
+    navigate(`/cart/${params.id}?qty=${qty}`);
+  };
 
   return (
     <div>
@@ -67,11 +81,27 @@ const ProductScreen = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Cantidad:</Col>
+                      <Col>
+                        <Form.Control
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        />
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+
                 <ListGroup.Item>
                   <Button
                     className='btn-block'
                     type='button'
                     disabled={product.countInStock === 0}
+                    onClick={addToCartHandler}
                   >
                     Agregar al carrito
                   </Button>

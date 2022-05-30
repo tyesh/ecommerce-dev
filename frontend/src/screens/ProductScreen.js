@@ -16,10 +16,10 @@ import { listProductDetails } from '../actions/productActions';
 import Loader from '../components/loader';
 import Message from '../components/Message';
 
-const ProductScreen = ({ history }) => {
+const ProductScreen = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);

@@ -10,14 +10,13 @@ import {
   Button,
   Card,
 } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Message from '../components/Message';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = () => {
   const params = useParams();
-  let [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
 
   const productId = params.id;
   const qty = searchParams.get('qty');
@@ -34,7 +33,7 @@ const CartScreen = () => {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log('removed');
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {

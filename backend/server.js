@@ -5,7 +5,7 @@ import connectDB from './config/db.js';
 import colors from 'colors';
 
 import productRoutes from './routes/productRoutes.js';
-import userRoutes from './routes/usersRoutes';
+import userRoutes from './routes/usersRoutes.js';
 
 dotenv.config();
 

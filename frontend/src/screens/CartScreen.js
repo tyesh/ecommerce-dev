@@ -10,12 +10,13 @@ import {
   Button,
   Card,
 } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = () => {
   const params = useParams();
+  const navigate = useNavigate();
   let [searchParams] = useSearchParams();
 
   const productId = params.id;
@@ -37,7 +38,7 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
-    console.log('checkout');
+    navigate('/login?redirect=shipping');
   };
 
   return (

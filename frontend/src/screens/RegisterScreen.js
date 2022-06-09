@@ -19,7 +19,7 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
 
   const redirect = searchParams.get('redirect')
-    ? searchParams.get('redirect').split('=')[1]
+    ? searchParams.get('redirect')
     : '/';
 
   const userRegister = useSelector((state) => state.userRegister);
@@ -36,11 +36,7 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(
-        searchParams.get('redirect')
-          ? searchParams.get('redirect').split('=')[1]
-          : '/'
-      );
+      navigate(redirect);
     }
   }, [userInfo, redirect, navigate]);
 

@@ -19,7 +19,7 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   const redirect = searchParams.get('redirect')
-    ? searchParams.get('redirect').split('=')[1]
+    ? searchParams.get('redirect')
     : '/';
 
   const submitHandler = (e) => {
@@ -31,7 +31,7 @@ const LoginScreen = () => {
     if (userInfo) {
       navigate(redirect);
     }
-  }, [userInfo, redirect, dispatch]);
+  }, [userInfo, redirect, navigate]);
 
   return (
     <FormContainer>

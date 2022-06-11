@@ -13,10 +13,10 @@ import ProfileScreen from './screens/ProfileScreen';
 const App = () => {
   return (
     <>
-      <Header />
-      <main className='py-3'>
-        <Container>
-          <BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <main className='py-3'>
+          <Container>
             <Routes>
               <Route path='/' element={<HomeScreen />} />
               <Route path='/product/:id' element={<ProductScreen />} />
@@ -25,10 +25,10 @@ const App = () => {
               <Route path='/register' element={<RegisterScreen />} />
               <Route path='/profile' element={<ProfileScreen />} />
             </Routes>
-          </BrowserRouter>
-        </Container>
-      </main>
-      <Footer />
+          </Container>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 };

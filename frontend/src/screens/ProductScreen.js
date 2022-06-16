@@ -13,7 +13,7 @@ import {
 import Rating from '../components/Rating';
 import { useNavigate, useParams } from 'react-router';
 import { listProductDetails } from '../actions/productActions';
-import Loader from '../components/loader';
+import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const ProductScreen = () => {

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { Link, useParams } from 'react-router-dom';
-import { getOrderDetails, paidOrderDetails } from '../actions/orderActions';
+import { getOrderDetails, payOrder } from '../actions/orderActions';
 import { ORDER_PAID_RESET } from '../constants/orderConstants';
 
 const OrderScreen = () => {
@@ -53,7 +53,7 @@ const OrderScreen = () => {
   }, [dispatch, order, orderId, successPay]);
 
   const successPaymentHandler = (paymentResult) => {
-    dispatch(paidOrderDetails(orderId, paymentResult));
+    dispatch(payOrder(orderId, paymentResult));
   };
 
   return loading ? (

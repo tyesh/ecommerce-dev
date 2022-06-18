@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { getUserOrders } from '../actions/orderActions';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -25,6 +26,9 @@ const ProfileScreen = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  const userOrders = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, error: errorOrders, orders } = userOrders;
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -40,6 +44,7 @@ const ProfileScreen = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'));
+        dispatch(getUserOrders());
       } else {
         setName(user.name);
         setEmail(user.email);

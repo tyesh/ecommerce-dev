@@ -40,7 +40,6 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 // @route   GET /api/orders/:id
 // æaccess  Private
 const getOrderById = expressAsyncHandler(async (req, res) => {
-  console.log(req.params.id);
   const order = await Order.findById(req.params.id).populate(
     'user',
     'name email'

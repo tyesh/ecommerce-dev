@@ -19,7 +19,7 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   const redirect = searchParams.get('redirect')
-    ? searchParams.get('redirect')
+    ? `/${searchParams.get('redirect')}`
     : '/';
 
   const submitHandler = (e) => {
@@ -29,7 +29,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`);
+      navigate(`${redirect}`);
     }
   }, [userInfo, redirect, navigate]);
 

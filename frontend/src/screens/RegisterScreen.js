@@ -19,7 +19,7 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
 
   const redirect = searchParams.get('redirect')
-    ? searchParams.get('redirect')
+    ? `/${searchParams.get('redirect')}`
     : '/';
 
   const userRegister = useSelector((state) => state.userRegister);

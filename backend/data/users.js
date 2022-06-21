@@ -14,7 +14,7 @@ const users = [
   },
   {
     name: 'Jane Doe',
-    email: 'janeexample.com',
+    email: 'jane@example.com',
     password: bcryp.hashSync('gol123', 10),
   },
 ];

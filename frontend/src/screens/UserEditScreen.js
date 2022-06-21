@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Link,
-  useSearchParams,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUser } from '../actions/userActions';
+import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 const UserEditScreen = () => {
   const params = useParams();
@@ -26,19 +22,32 @@ const UserEditScreen = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdate;
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
 
   useEffect(() => {
-    if (!user.name || user._id != userId) {
-      dispatch(getUserDetails(userId));
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
+      navigate('/admin/userList');
     } else {
-      setName(user.name);
-      setEmail(user.email);
-      setIsAdmin(user.isPaid);
+      if (!user.name || user._id !== userId) {
+        dispatch(getUserDetails(userId));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+        setIsAdmin(user.isPaid);
+      }
     }
-  }, [dispatch, user, userId]);
+  }, [dispatch, navigate, user, userId, successUpdate]);
 
   return (
     <>
@@ -47,6 +56,8 @@ const UserEditScreen = () => {
       </Link>
       <FormContainer>
         <h1>Editar Usuario</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (

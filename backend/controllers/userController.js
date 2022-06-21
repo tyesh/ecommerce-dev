@@ -143,7 +143,7 @@ const getUserById = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // æaccess  Private/Admin
 const updateUser = expressAsyncHandler(async (req, res) => {
-  const user = await User.findById(req.params._id);
+  const user = await User.findById(req.params.id);
 
   if (user) {
     user.name = req.body.name || user.name;

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { listProductDetails } from '../actions/productActions';
+import { listProductDetails, updateProduct } from '../actions/productActions';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = () => {
   const params = useParams();
@@ -25,24 +26,47 @@ const ProductEditScreen = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
+
   const submitHandler = (e) => {
     e.preventDefault();
-    //dispatch(updateUser({ _id: userId, name, email, isAdmin }));
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        brand,
+        category,
+        description,
+        countInStock,
+        image,
+      })
+    );
   };
 
   useEffect(() => {
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId));
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      navigate('/admin/productsList');
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
+      if (!product.name || product._id !== productId) {
+        dispatch(listProductDetails(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+        setDescription(product.description);
+      }
     }
-  }, [dispatch, navigate, product, productId]);
+  }, [dispatch, navigate, product, productId, successUpdate]);
 
   return (
     <>
@@ -51,6 +75,8 @@ const ProductEditScreen = () => {
       </Link>
       <FormContainer>
         <h1>Editar Producto</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -109,6 +135,15 @@ const ProductEditScreen = () => {
                 placeholder='Ingrese cantidad stock'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId='description'>
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Ingrese descripción'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
             <Button className='my-3' type='submit' variant='primary'>

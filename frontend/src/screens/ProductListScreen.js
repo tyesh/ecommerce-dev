@@ -47,7 +47,7 @@ const ProductListScreen = () => {
       navigate('/login');
     }
     if (successCreate) {
-      navigate(`/admin/product/${createdProduct._id}`);
+      navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProducts());
     }

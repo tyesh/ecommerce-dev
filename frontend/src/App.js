@@ -42,15 +42,21 @@ const App = () => {
               <Route path='/order/:id' element={<OrderScreen />} />
               <Route path='/admin/userList' element={<UserListScreen />} />
               <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-              <Route
-                path='/admin/productsList'
-                element={<ProductListScreen />}
-              />
+              <Route path='/admin/productsList' element={<ProductListScreen />}>
+                <Route path=':pageNumber' element={<ProductListScreen />} />
+                <Route path='' element={<ProductListScreen />} />
+              </Route>
               <Route
                 path='/admin/product/:id/edit'
                 element={<ProductEditScreen />}
               />
               <Route path='/admin/ordersList' element={<OrderListScreen />} />
+              <Route path='/search/:keyword' element={<HomeScreen />} />
+              <Route path='/page/:pageNumber' element={<HomeScreen />} />
+              <Route
+                path='/search/:keyword/page/:pageNumber'
+                element={<HomeScreen />}
+              />
             </Routes>
           </Container>
         </main>

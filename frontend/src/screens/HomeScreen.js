@@ -6,8 +6,9 @@ import Paginate from '../components/Paginate';
 import { listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ const HomeScreen = () => {
 
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+      {!keyword ? <ProductCarousel /> : <Link to='/'>Atrás</Link>}
       <h1>Últimos Productos</h1>
       {loading ? (
         <Loader />

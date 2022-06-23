@@ -1,7 +1,7 @@
 {
-  "name": "lincoln_demo",
+  "name": "proshop_demo",
   "version": "1.0.0",
-  "description": "Ecommerce demo for Lincoln",
+  "description": "Ecommerce demo for proshop`",
   "main": "server,js",
   "type": "module",
   "scripts": {

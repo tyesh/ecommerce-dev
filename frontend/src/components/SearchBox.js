@@ -6,6 +6,11 @@ const SearchBox = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
 
+  const clearHandler = () => {
+    setKeyword('');
+    navigate(`/`);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
@@ -21,11 +26,20 @@ const SearchBox = () => {
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
+        value={keyword}
         placeholder='Buscar producto...'
-        className='mr-sm-2 ml-sm-5'
+        className='mr-sm-2 ml-sm-5 btn-search'
       ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2 mx-1'>
-        Buscar
+      <Button
+        type='button'
+        variant='dark'
+        className='p-2 btn-search-icon'
+        onClick={clearHandler}
+      >
+        <i className='fa-solid fa-xmark' />
+      </Button>
+      <Button type='submit' variant='dark' className='p-2 btn-search-icon'>
+        <i className='fa-solid fa-magnifying-glass' />
       </Button>
     </Form>
   );

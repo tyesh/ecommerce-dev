@@ -18,12 +18,12 @@ const About = () => {
           />
         </Col>
         <Col xs='12' sm='9' md='9' className='my-5'>
-          <h2>BookMmerce, un proyecto personal</h2>
+          <h2>Bookommerce, un proyecto personal</h2>
           <p>
             Hola! Me llamo Carlos Velazquez y soy el creador de esta aplicación.
           </p>
           <p>
-            Primero, te cuento un poco sobre BookMmerce. BookMmerce fue
+            Primero, te cuento un poco sobre Bookommerce. Bookommerce fue
             desarrolado utilzando como base el curso{' '}
             <a
               href='https://www.udemy.com/course/mern-ecommerce/?utm_source=adwords&utm_medium=udemyads&utm_campaign=LongTail_la.EN_cc.ROW&utm_content=deal4584&utm_term=_._ag_77879424134_._ad_535397245863_._kw__._de_c_._dm__._pl__._ti_dsa-1007766171312_._li_9069967_._pd__._&matchtype=&gclid=CjwKCAjw5NqVBhAjEiwAeCa97UUt_-a4ISpbocap3stuqDbG76ubN9S7c79jauIYg-s4C55YIbLSSxoCMq8QAvD_BwE'

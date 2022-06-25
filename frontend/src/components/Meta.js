@@ -12,8 +12,8 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: 'Bienvenido a BookMmerce',
-  description: 'Compre los mejores libros',
+  title: 'Bienvenido a Bookommerce',
+  description: 'Compre los mejores libros al mejor precio.',
   keywords: 'libros',
 };
 

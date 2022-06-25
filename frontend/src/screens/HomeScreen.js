@@ -51,8 +51,12 @@ const HomeScreen = () => {
             />
           </>
         )}
-        <hr className='featurette-divider' />
-        <About />
+        {!keyword && (
+          <>
+            <hr className='featurette-divider' />
+            <About />
+          </>
+        )}
       </Container>
     </>
   );

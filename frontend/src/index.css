@@ -59,6 +59,28 @@ h1 {
   letter-spacing: -0.05rem;
 }
 
+.btn-search,
+.btn-search:focus {
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+  color: #fff;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  padding: 1px 6px;
+}
+
+.btn-search:focus {
+  box-shadow: none;
+}
+
+.btn-search-icon,
+.btn-search-icon:hover,
+.btn-search-icon:focus {
+  border: none;
+  border-bottom: 3px solid #ccc;
+  box-shadow: none;
+}
+
 @media only screen and (min-width: 1000px) {
   .me-image {
     vertical-align: middle;

@@ -1,7 +1,7 @@
 {
-  "name": "bookmmerce_demo",
+  "name": "bookommerce_demo",
   "version": "1.0.0",
-  "description": "Ecommerce demo for BookMmerce`",
+  "description": "Ecommerce demo for bookommerce`",
   "main": "server,js",
   "type": "module",
   "scripts": {

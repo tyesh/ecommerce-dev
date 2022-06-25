@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+  margin: 0;
+}
 main {
   min-height: 80vh;
 }
@@ -13,4 +17,23 @@ h1 {
 
 .rating span {
   margin: 0.1rem;
+}
+
+.hero-section {
+  background-image: url('../public/images/hero.jpg'); /* The image used */
+  background-color: #000; /* Used if the image is unavailable */
+  min-height: 80vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.hero-section h1 {
+  color: #fff;
+  font-size: 50px;
+}
+
+.hero-section p {
+  color: #fff;
+  font-size: 1.5em;
 }

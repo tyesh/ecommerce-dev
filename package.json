@@ -1,7 +1,7 @@
 {
-  "name": "proshop_demo",
+  "name": "bookmmerce_demo",
   "version": "1.0.0",
-  "description": "Ecommerce demo for proshop`",
+  "description": "Ecommerce demo for BookMmerce`",
   "main": "server,js",
   "type": "module",
   "scripts": {

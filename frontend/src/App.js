@@ -18,6 +18,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import AboutScreen from './screens/AboutScreen';
 
 const App = () => {
   return (
@@ -59,6 +60,7 @@ const App = () => {
                 path='/search/:keyword/page/:pageNumber'
                 element={<HomeScreen />}
               />
+              <Route path='/about' element={<AboutScreen />} />
             </Routes>
           </Container>
         </main>

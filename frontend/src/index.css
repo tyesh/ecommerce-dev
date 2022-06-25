@@ -37,3 +37,40 @@ h1 {
   color: #fff;
   font-size: 1.5em;
 }
+
+.me-image {
+  vertical-align: middle;
+  width: 150px;
+  border-radius: 50%;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 3rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -0.05rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .me-image {
+    vertical-align: middle;
+    width: 200px;
+    border-radius: 50%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .me-image {
+    vertical-align: middle;
+    width: 250px;
+    border-radius: 50%;
+  }
+}

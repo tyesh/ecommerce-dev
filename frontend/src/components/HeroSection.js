@@ -22,7 +22,12 @@ const HeroSection = () => {
         </Row>
         <Row style={{ textAlign: 'right' }}>
           <Col>
-            <Button type='button' variant='primary' className='mx-2'>
+            <Button
+              type='button'
+              variant='primary'
+              className='mx-2'
+              href='#about'
+            >
               Màs información
             </Button>
             <Button type='button' variant='secondary'>

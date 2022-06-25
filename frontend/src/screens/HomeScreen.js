@@ -7,9 +7,9 @@ import { listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useParams, Link } from 'react-router-dom';
-import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import HeroSection from '../components/HeroSection';
+import About from '../components/About';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -51,6 +51,8 @@ const HomeScreen = () => {
             />
           </>
         )}
+        <hr className='featurette-divider' />
+        <About />
       </Container>
     </>
   );

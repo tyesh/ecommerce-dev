@@ -26,7 +26,7 @@ const Header = () => {
             <Nav className='me-auto'>
               <SearchBox />
               <LinkContainer to='/about'>
-                <Nav.Link>Nosotros</Nav.Link>
+                <Nav.Link>Acerca de</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/contact'>
                 <Nav.Link>Contacto</Nav.Link>

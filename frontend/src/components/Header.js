@@ -19,14 +19,13 @@ const Header = () => {
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>Proshop</Navbar.Brand>
+            <Navbar.Brand>Bookommerce</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
-              <SearchBox />
               <LinkContainer to='/about'>
-                <Nav.Link>Nosotros</Nav.Link>
+                <Nav.Link>Acerca de</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/contact'>
                 <Nav.Link>Contacto</Nav.Link>
@@ -56,6 +55,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              <SearchBox />
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminMenu'>
                   <LinkContainer to='/admin/userList'>

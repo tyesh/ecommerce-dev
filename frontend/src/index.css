@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+  margin: 0;
+}
 main {
   min-height: 80vh;
 }
@@ -13,4 +17,101 @@ h1 {
 
 .rating span {
   margin: 0.1rem;
+}
+
+.hero-section {
+  background-image: url('../public/images/pexels-jess-bailey-designs-762686.jpg'); /* The image used */
+  background-color: #000; /* Used if the image is unavailable */
+  min-height: 60vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.hero-section h1 {
+  font-size: 30px;
+  color: #000;
+}
+
+.hero-section p {
+  font-size: 1em;
+  color: #000;
+}
+
+.me-image {
+  vertical-align: middle;
+  width: 150px;
+  border-radius: 50%;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 3rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -0.05rem;
+}
+
+.btn-search,
+.btn-search:focus {
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+  color: #fff;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  padding: 1px 6px;
+}
+
+.btn-search:focus {
+  box-shadow: none;
+}
+
+.btn-search-icon,
+.btn-search-icon:hover,
+.btn-search-icon:focus {
+  border: none;
+  border-bottom: 3px solid #ccc;
+  box-shadow: none;
+}
+
+@media only screen and (min-width: 1000px) {
+  .me-image {
+    vertical-align: middle;
+    width: 200px;
+    border-radius: 50%;
+  }
+
+  .hero-section h1 {
+    font-size: 35px;
+  }
+
+  .hero-section p {
+    font-size: 1.2em;
+    color: #000;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .me-image {
+    vertical-align: middle;
+    width: 250px;
+    border-radius: 50%;
+  }
+
+  .hero-section h1 {
+    font-size: 35px;
+    color: #000;
+  }
+
+  .hero-section p {
+    font-size: 1.2em;
+    color: #000;
+  }
 }

@@ -9,6 +9,7 @@ import Message from '../components/Message';
 import { useParams, Link } from 'react-router-dom';
 import Meta from '../components/Meta';
 import HeroSection from '../components/HeroSection';
+import ProductCarousel from '../components/ProductCarousel';
 import About from '../components/About';
 
 const HomeScreen = () => {

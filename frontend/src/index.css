@@ -20,22 +20,22 @@ h1 {
 }
 
 .hero-section {
-  background-image: url('../public/images/hero.jpg'); /* The image used */
+  background-image: url('../public/images/pexels-jess-bailey-designs-762686.jpg'); /* The image used */
   background-color: #000; /* Used if the image is unavailable */
-  min-height: 80vh;
+  min-height: 60vh;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .hero-section h1 {
-  color: #fff;
-  font-size: 50px;
+  font-size: 30px;
+  color: #000;
 }
 
 .hero-section p {
-  color: #fff;
-  font-size: 1.5em;
+  font-size: 1em;
+  color: #000;
 }
 
 .me-image {
@@ -87,6 +87,15 @@ h1 {
     width: 200px;
     border-radius: 50%;
   }
+
+  .hero-section h1 {
+    font-size: 35px;
+  }
+
+  .hero-section p {
+    font-size: 1.2em;
+    color: #000;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -94,5 +103,15 @@ h1 {
     vertical-align: middle;
     width: 250px;
     border-radius: 50%;
+  }
+
+  .hero-section h1 {
+    font-size: 35px;
+    color: #000;
+  }
+
+  .hero-section p {
+    font-size: 1.2em;
+    color: #000;
   }
 }

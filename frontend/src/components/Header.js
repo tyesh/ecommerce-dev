@@ -24,7 +24,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
-              <SearchBox />
               <LinkContainer to='/about'>
                 <Nav.Link>Acerca de</Nav.Link>
               </LinkContainer>
@@ -56,6 +55,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              <SearchBox />
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminMenu'>
                   <LinkContainer to='/admin/userList'>

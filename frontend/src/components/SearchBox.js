@@ -22,12 +22,15 @@ const SearchBox = () => {
 
   return (
     <Form onSubmit={submitHandler} className='d-flex'>
+      <Button type='submit' variant='dark' className='p-2 btn-search-icon'>
+        <i className='fa-solid fa-magnifying-glass' />
+      </Button>
       <Form.Control
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
-        placeholder='Buscar producto...'
+        placeholder='Buscar...'
         className='mr-sm-2 ml-sm-5 btn-search'
       ></Form.Control>
       <Button
@@ -37,9 +40,6 @@ const SearchBox = () => {
         onClick={clearHandler}
       >
         <i className='fa-solid fa-xmark' />
-      </Button>
-      <Button type='submit' variant='dark' className='p-2 btn-search-icon'>
-        <i className='fa-solid fa-magnifying-glass' />
       </Button>
     </Form>
   );

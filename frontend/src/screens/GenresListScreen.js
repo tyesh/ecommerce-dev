@@ -8,7 +8,7 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import { useParams } from 'react-router-dom';
 import { GENRE_LIST_RESET } from '../constants/genreConstants';
-import { listGenres } from '../actions/genreActions';
+import { deleteGenre, listGenres } from '../actions/genreActions';
 
 const GenresListScreen = () => {
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ const GenresListScreen = () => {
   const genreList = useSelector((state) => state.genreList);
   const { loading, error, genres, page, pages } = genreList;
 
-  /*const productDelete = useSelector((state) => state.productDelete);
+  const genreDelete = useSelector((state) => state.genreDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = productDelete;*/
+  } = genreDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -36,7 +36,7 @@ const GenresListScreen = () => {
       navigate('/login');
     }
     dispatch(listGenres('', pageNumber));
-  }, [dispatch, navigate, userInfo, pageNumber]);
+  }, [dispatch, navigate, userInfo, pageNumber, successDelete]);
 
   const createGenreHandler = () => {
     navigate('/admin/genres/new');
@@ -44,7 +44,7 @@ const GenresListScreen = () => {
 
   const deleteHandler = (id) => {
     if (window.confirm('Seguro?')) {
-      //dispatch(deleteProduct(id));
+      dispatch(deleteGenre(id));
     }
   };
 
@@ -61,6 +61,8 @@ const GenresListScreen = () => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (

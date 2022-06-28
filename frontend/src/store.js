@@ -30,8 +30,10 @@ import {
 } from './reducers/orderReducers';
 import {
   genreCreateReducer,
+  genreDeleteReducer,
   genreDetailReducer,
   genreListReducer,
+  genreUpdateReducer,
 } from './reducers/genreReducer';
 
 const reducer = combineReducers({
@@ -58,7 +60,9 @@ const reducer = combineReducers({
   orderList: orderListReducer,
   genreList: genreListReducer,
   genreDetails: genreDetailReducer,
-  genreCreated: genreCreateReducer,
+  genreCreate: genreCreateReducer,
+  genreDelete: genreDeleteReducer,
+  genreUpdate: genreUpdateReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

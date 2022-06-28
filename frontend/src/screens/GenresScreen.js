@@ -20,12 +20,12 @@ const GenresScreen = () => {
   const [color, setColor] = useState('');
   const [uploading, setUploading] = useState(false);
 
-  const genreCreated = useSelector((state) => state.genreCreated);
+  const genreCreate = useSelector((state) => state.genreCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-  } = genreCreated;
+  } = genreCreate;
 
   const submitHandler = (e) => {
     e.preventDefault();

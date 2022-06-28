@@ -58,4 +58,42 @@ const createGenre = expressAsyncHandler(async (req, res) => {
   res.status(201).json(createdGenre);
 });
 
-export { getGenres, getGenreById, createGenre };
+// @desc    Delete a genre
+// @route   Delete /api/genres/:id
+// æaccess  Private/Admin
+const deleteGenre = expressAsyncHandler(async (req, res) => {
+  const genre = await Genre.findById(req.params.id);
+
+  if (genre) {
+    await genre.remove();
+    res.json({ genre: 'Genre removed' });
+  } else {
+    res.status(404);
+    throw new Error('Genre not found');
+  }
+});
+
+// @desc    Update a genre
+// @route   PUT /api/genre/:id
+// æaccess  Private/Admin
+const updateGenre = expressAsyncHandler(async (req, res) => {
+  const { name, image, highlight, color } = req.body;
+
+  const genre = await genre.findById(req.params.id);
+
+  if (genre) {
+    genre.name = name;
+    genre.price = price;
+    genre.highlight = highlight;
+    genre.image = image;
+    genre.color = color;
+
+    const updatedgenre = await genre.save();
+    res.status(201).json(updatedgenre);
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
+export { getGenres, getGenreById, createGenre, deleteGenre, updateGenre };

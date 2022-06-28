@@ -17,6 +17,7 @@ const genreSchema = mongoose.Schema(
       required: false,
       default: false,
     },
+    color: { type: String, required: false },
   },
   {
     timestamps: true,

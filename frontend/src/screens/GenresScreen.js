@@ -17,6 +17,7 @@ const GenresScreen = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [highlight, setHighlight] = useState(false);
+  const [color, setColor] = useState('');
   const [uploading, setUploading] = useState(false);
 
   const genreCreated = useSelector((state) => state.genreCreated);
@@ -33,6 +34,7 @@ const GenresScreen = () => {
         name,
         image,
         highlight,
+        color,
       })
     );
   };
@@ -63,7 +65,7 @@ const GenresScreen = () => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: GENRE_CREATE_RESET });
-      navigate('/admin/genressList');
+      navigate('/admin/genresList');
     } else {
       /*if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId));
@@ -118,7 +120,15 @@ const GenresScreen = () => {
               value={true}
               label='Destacado?'
               onChange={(e) => setHighlight(e.target.value)}
-              checked={highlight === 'true'}
+            />
+          </Form.Group>
+          <Form.Group controlId='color'>
+            <Form.Label>Color</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Ingrese color'
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
             />
           </Form.Group>
           <Button className='my-3' type='submit' variant='primary'>

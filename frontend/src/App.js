@@ -20,6 +20,7 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import AboutScreen from './screens/AboutScreen';
 import GenresScreen from './screens/GenresScreen';
+import GenresListScreen from './screens/GenresListScreen';
 
 const App = () => {
   return (
@@ -62,6 +63,9 @@ const App = () => {
                 path='/search/:keyword/page/:pageNumber'
                 element={<HomeScreen />}
               />
+
+              <Route path='/admin/genresList' element={<GenresListScreen />} />
+              <Route path='/admin/genres/new' element={<GenresScreen />} />
               <Route path='/about' element={<AboutScreen />} />
             </Routes>
           </Container>

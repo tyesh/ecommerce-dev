@@ -5,9 +5,24 @@ import Genre from '../models/genresModel.js';
 // @route   GET /api/genres
 // æaccess  Public
 const getGenres = expressAsyncHandler(async (req, res) => {
-  const genres = await Genre.find({ ...keyword });
+  const pagesize = 10;
 
-  res.json(genres);
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
+  const count = await Genre.count({ ...keyword });
+  const genres = await Genre.find({ ...keyword })
+    .limit(pagesize)
+    .skip(pagesize * (page - 1));
+
+  res.json({ genres, page, pages: Math.ceil(count / pagesize) });
 });
 
 // @desc    Fetch single genre
@@ -28,7 +43,7 @@ const getGenreById = expressAsyncHandler(async (req, res) => {
 // @route   POST /api/genres/
 // æaccess  Private/Admin
 const createGenre = expressAsyncHandler(async (req, res) => {
-  const { name, image, highlight } = req.body;
+  const { name, image, highlight, color } = req.body;
 
   const genre = new Genre({
     name: name,
@@ -36,6 +51,7 @@ const createGenre = expressAsyncHandler(async (req, res) => {
     user: req.user._id,
     image: image,
     highlight: highlight,
+    color: color,
   });
 
   const createdGenre = await genre.save();

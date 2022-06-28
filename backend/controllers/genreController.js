@@ -79,11 +79,10 @@ const deleteGenre = expressAsyncHandler(async (req, res) => {
 const updateGenre = expressAsyncHandler(async (req, res) => {
   const { name, image, highlight, color } = req.body;
 
-  const genre = await genre.findById(req.params.id);
+  const genre = await Genre.findById(req.params.id);
 
   if (genre) {
     genre.name = name;
-    genre.price = price;
     genre.highlight = highlight;
     genre.image = image;
     genre.color = color;

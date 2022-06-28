@@ -56,7 +56,6 @@ const App = () => {
                 element={<ProductEditScreen />}
               />
               <Route path='/admin/ordersList' element={<OrderListScreen />} />
-              <Route path='/admin/genre/new' element={<GenresScreen />} />
               <Route path='/search/:keyword' element={<HomeScreen />} />
               <Route path='/page/:pageNumber' element={<HomeScreen />} />
               <Route
@@ -66,6 +65,7 @@ const App = () => {
 
               <Route path='/admin/genresList' element={<GenresListScreen />} />
               <Route path='/admin/genres/new' element={<GenresScreen />} />
+              <Route path='/admin/genres/:id/edit' element={<GenresScreen />} />
               <Route path='/about' element={<AboutScreen />} />
             </Routes>
           </Container>

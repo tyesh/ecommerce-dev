@@ -8,6 +8,7 @@ import {
   GENRE_DELETE_SUCCESS,
   GENRE_DETAILS_FAIL,
   GENRE_DETAILS_REQUEST,
+  GENRE_DETAILS_RESET,
   GENRE_DETAILS_SUCCESS,
   GENRE_LIST_FAIL,
   GENRE_LIST_REQUEST,
@@ -44,6 +45,8 @@ export const genreDetailReducer = (state = { genre: {} }, action) => {
       return { loading: false, genre: action.payload };
     case GENRE_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    case GENRE_DETAILS_RESET:
+      return { genre: {} };
     default:
       return state;
   }

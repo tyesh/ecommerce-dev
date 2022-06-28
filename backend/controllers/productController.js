@@ -1,10 +1,9 @@
-import { json } from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Product from '../models/ProductModel.js';
 
-// @desc Fetch all products
-// @route GET /api/products
-// æaccess Public
+// @desc    Fetch all products
+// @route   GET /api/products
+// æaccess  Public
 const getProducts = expressAsyncHandler(async (req, res) => {
   const pagesize = 10;
 
@@ -27,9 +26,9 @@ const getProducts = expressAsyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pagesize) });
 });
 
-// @desc Fetch single product
-// @route GET /api/product/:id
-// æaccess Public
+// @desc    Fetch single product
+// @route   GET /api/product/:id
+// æaccess  Public
 const getProductById = expressAsyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 

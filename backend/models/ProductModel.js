@@ -43,6 +43,20 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    authors: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Author',
+      },
+    ],
+    genres: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Genre',
+      },
+    ],
     reviews: [reviewSchema],
     rating: {
       type: Number,
@@ -58,6 +72,16 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    promotionalPrice: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    highlight: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     countInStock: {
       type: Number,

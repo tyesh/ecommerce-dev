@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/usersRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import genreRoutes from './routes/genreRoutes.js';
 import uploadRoutes from './routes/UploadRoutes.js';
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/genres', genreRoutes);
 app.use('/api/upload', uploadRoutes);
 
 app.use('/api/config/paypal', (req, res) =>

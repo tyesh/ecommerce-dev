@@ -28,6 +28,13 @@ import {
   orderListReducer,
   orderPaidReducer,
 } from './reducers/orderReducers';
+import {
+  genreCreateReducer,
+  genreDeleteReducer,
+  genreDetailReducer,
+  genreListReducer,
+  genreUpdateReducer,
+} from './reducers/genreReducer';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -51,6 +58,11 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
+  genreList: genreListReducer,
+  genreDetails: genreDetailReducer,
+  genreCreate: genreCreateReducer,
+  genreDelete: genreDeleteReducer,
+  genreUpdate: genreUpdateReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

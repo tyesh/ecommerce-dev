@@ -21,6 +21,7 @@ import OrderListScreen from './screens/OrderListScreen';
 import AboutScreen from './screens/AboutScreen';
 import GenresScreen from './screens/GenresScreen';
 import GenresListScreen from './screens/GenresListScreen';
+import AuthorListScreen from './screens/AuthorListScreen';
 
 const App = () => {
   return (
@@ -66,6 +67,7 @@ const App = () => {
               <Route path='/admin/genresList' element={<GenresListScreen />} />
               <Route path='/admin/genres/new' element={<GenresScreen />} />
               <Route path='/admin/genres/:id/edit' element={<GenresScreen />} />
+              <Route path='/admin/authorsList' element={<AuthorListScreen />} />
               <Route path='/about' element={<AboutScreen />} />
             </Routes>
           </Container>

@@ -7,65 +7,62 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import {
-  createGenre,
-  listGenreDetails,
-  updateGenre,
-} from '../actions/genreActions';
+  createAuthor,
+  listAuthorDetails,
+  updateAuthor,
+} from '../actions/authorActions';
 import {
-  GENRE_CREATE_RESET,
-  GENRE_DETAILS_RESET,
-  GENRE_UPDATE_RESET,
-} from '../constants/genreConstants';
+  AUTHOR_CREATE_RESET,
+  AUTHOR_DETAILS_RESET,
+  AUTHOR_UPDATE_RESET,
+} from '../constants/authorConstants';
 
-const GenresScreen = () => {
+const AuthorScreen = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const genreId = params.id;
+  const authorId = params.id;
 
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [highlight, setHighlight] = useState(false);
-  const [color, setColor] = useState('');
   const [uploading, setUploading] = useState(false);
 
-  const genreDetails = useSelector((state) => state.genreDetails);
-  const { loading, error, genre } = genreDetails;
+  const authorDetails = useSelector((state) => state.authorDetails);
+  const { loading, error, author } = authorDetails;
 
-  const genreCreate = useSelector((state) => state.genreCreate);
+  const authorCreate = useSelector((state) => state.authorCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-  } = genreCreate;
+  } = authorCreate;
 
-  const genreUpdate = useSelector((state) => state.genreUpdate);
+  const authorUpdate = useSelector((state) => state.authorUpdate);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = genreUpdate;
+  } = authorUpdate;
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (genreId) {
+    if (authorId) {
       dispatch(
-        updateGenre({
-          _id: genreId,
+        updateAuthor({
+          _id: authorId,
           name,
           image,
           highlight,
-          color,
         })
       );
     } else {
       dispatch(
-        createGenre({
+        createAuthor({
           name,
           image,
           highlight,
-          color,
         })
       );
     }
@@ -96,31 +93,30 @@ const GenresScreen = () => {
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: GENRE_DETAILS_RESET });
-      dispatch({ type: GENRE_UPDATE_RESET });
-      navigate('/admin/genresList');
+      dispatch({ type: AUTHOR_DETAILS_RESET });
+      dispatch({ type: AUTHOR_UPDATE_RESET });
+      navigate('/admin/authorsList');
     } else if (successCreate) {
-      dispatch({ type: GENRE_CREATE_RESET });
-      navigate('/admin/genresList');
-    } else if (genreId) {
-      if (!genre.name || genre._id !== genreId) {
-        dispatch(listGenreDetails(genreId));
+      dispatch({ type: AUTHOR_CREATE_RESET });
+      navigate('/admin/authorsList');
+    } else if (authorId) {
+      if (!author.name || author._id !== authorId) {
+        dispatch(listAuthorDetails(authorId));
       } else {
-        setName(genre.name);
-        setHighlight(genre.highlight === true ? true : false);
-        setImage(genre.image);
-        setColor(genre.color);
+        setName(author.name);
+        setHighlight(author.highlight === true ? true : false);
+        setImage(author.image);
       }
     }
-  }, [dispatch, navigate, genre, genreId, successCreate, successUpdate]);
+  }, [dispatch, navigate, author, authorId, successCreate, successUpdate]);
 
   return (
     <>
-      <Link to='/admin/genresList' className='btn btn-liht my-3'>
+      <Link to='/admin/authorsList' className='btn btn-liht my-3'>
         Atràs
       </Link>
       <FormContainer>
-        <h1>Crear Género</h1>
+        <h1>Crear Autor</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loadingCreate && <Loader />}
@@ -164,17 +160,8 @@ const GenresScreen = () => {
                 }}
               />
             </Form.Group>
-            <Form.Group controlId='color'>
-              <Form.Label>Color</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Ingrese color'
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
-            </Form.Group>
             <Button className='my-3' type='submit' variant='primary'>
-              {genreId ? 'Actualizar' : 'Crear'}
+              {authorId ? 'Actualizar' : 'Crear'}
             </Button>
           </Form>
         )}
@@ -183,4 +170,4 @@ const GenresScreen = () => {
   );
 };
 
-export default GenresScreen;
+export default AuthorScreen;

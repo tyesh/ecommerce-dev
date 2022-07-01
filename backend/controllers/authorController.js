@@ -29,7 +29,10 @@ const getAuthor = expressAsyncHandler(async (req, res) => {
 // @route   GET /api/authors/:id
 // æaccess  Public
 const getAuthorById = expressAsyncHandler(async (req, res) => {
-  const author = await Author.findById(req.params.id);
+  const author = await Author.findById(req.params.id).populate(
+    'genres',
+    'id name'
+  );
 
   if (author) {
     res.json(author);
@@ -43,7 +46,7 @@ const getAuthorById = expressAsyncHandler(async (req, res) => {
 // @route   POST /api/authors/
 // æaccess  Private/Admin
 const createAuthor = expressAsyncHandler(async (req, res) => {
-  const { name, image, highlight, color } = req.body;
+  const { name, image, highlight, color, genres } = req.body;
 
   const author = new Author({
     name: name,
@@ -52,6 +55,7 @@ const createAuthor = expressAsyncHandler(async (req, res) => {
     image: image,
     highlight: highlight,
     color: color,
+    genres: genres,
   });
 
   const createdAuthor = await author.save();
@@ -77,7 +81,7 @@ const deleteAuthor = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/authors/:id
 // æaccess  Private/Admin
 const updateAuthor = expressAsyncHandler(async (req, res) => {
-  const { name, image, highlight, color } = req.body;
+  const { name, image, highlight, color, genres } = req.body;
 
   const author = await Author.findById(req.params.id);
 
@@ -86,6 +90,7 @@ const updateAuthor = expressAsyncHandler(async (req, res) => {
     author.highlight = highlight;
     author.image = image;
     author.color = color;
+    author.genres = genres;
 
     const updatedAuthor = await author.save();
     res.status(201).json(updatedAuthor);

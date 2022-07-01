@@ -70,6 +70,10 @@ const App = () => {
               <Route path='/admin/genres/:id/edit' element={<GenresScreen />} />
               <Route path='/admin/authorsList' element={<AuthorListScreen />} />
               <Route path='/admin/authors/new' element={<AuthorScreen />} />
+              <Route
+                path='/admin/authors/:id/edit'
+                element={<AuthorScreen />}
+              />
               <Route path='/about' element={<AboutScreen />} />
             </Routes>
           </Container>

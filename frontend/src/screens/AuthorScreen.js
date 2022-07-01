@@ -16,6 +16,8 @@ import {
   AUTHOR_DETAILS_RESET,
   AUTHOR_UPDATE_RESET,
 } from '../constants/authorConstants';
+import Multiselect from 'multiselect-react-dropdown';
+import { listAllGenres } from '../actions/genreActions';
 
 const AuthorScreen = () => {
   const params = useParams();
@@ -27,6 +29,7 @@ const AuthorScreen = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [highlight, setHighlight] = useState(false);
+  const [genres, setGenres] = useState([]);
   const [uploading, setUploading] = useState(false);
 
   const authorDetails = useSelector((state) => state.authorDetails);
@@ -46,6 +49,11 @@ const AuthorScreen = () => {
     success: successUpdate,
   } = authorUpdate;
 
+  const genreListAll = useSelector((state) => state.genreListAll);
+  const { loadingGenres, errorGenres, genres: genresList } = genreListAll;
+
+  const options = Array.from(genresList, (x) => ({ id: x._id, name: x.name }));
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (authorId) {
@@ -55,6 +63,7 @@ const AuthorScreen = () => {
           name,
           image,
           highlight,
+          genres,
         })
       );
     } else {
@@ -63,6 +72,7 @@ const AuthorScreen = () => {
           name,
           image,
           highlight,
+          genres,
         })
       );
     }
@@ -106,9 +116,25 @@ const AuthorScreen = () => {
         setName(author.name);
         setHighlight(author.highlight === true ? true : false);
         setImage(author.image);
+        setGenres(author.genres);
       }
     }
-  }, [dispatch, navigate, author, authorId, successCreate, successUpdate]);
+    if (genresList.length === 0) {
+      dispatch(listAllGenres());
+    }
+  }, [
+    dispatch,
+    navigate,
+    author,
+    authorId,
+    genresList,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const selGenreHandler = (selectedList) => {
+    setGenres(Array.from(selectedList, (x) => x.id));
+  };
 
   return (
     <>
@@ -135,6 +161,26 @@ const AuthorScreen = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Generos</Form.Label>
+              {loadingGenres ? (
+                <Loader />
+              ) : errorGenres ? (
+                <Message variant='danger'>{errorGenres}</Message>
+              ) : (
+                <Multiselect
+                  options={options}
+                  selectedValues={genres}
+                  onSelect={selGenreHandler}
+                  onRemove={selGenreHandler}
+                  displayValue='name'
+                  placeholder='Seleccione genero...'
+                  onKeyPressFn={(e) => {
+                    if (e.key === 'Enter') e.preventDefault();
+                  }}
+                />
+              )}
             </Form.Group>
             <Form.Group controlId='image'>
               <Form.Label>Imagen</Form.Label>

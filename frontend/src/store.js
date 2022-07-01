@@ -32,6 +32,7 @@ import {
   genreCreateReducer,
   genreDeleteReducer,
   genreDetailReducer,
+  genreListAllReducer,
   genreListReducer,
   genreUpdateReducer,
 } from './reducers/genreReducer';
@@ -75,6 +76,7 @@ const reducer = combineReducers({
   authorCreate: authorCreateReducer,
   authorDelete: authorDeleteReducer,
   authorUpdate: authorUpdateReducer,
+  genreListAll: genreListAllReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

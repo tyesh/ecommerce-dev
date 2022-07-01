@@ -15,6 +15,9 @@ import {
   GENRE_UPDATE_REQUEST,
   GENRE_UPDATE_SUCCESS,
   GENRE_UPDATE_FAIL,
+  GENRE_LIST_ALL_REQUEST,
+  GENRE_LIST_ALL_SUCCESS,
+  GENRE_LIST_ALL_FAIL,
 } from '../constants/genreConstants';
 
 export const listGenres = () => async (dispatch) => {
@@ -27,6 +30,24 @@ export const listGenres = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GENRE_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listAllGenres = () => async (dispatch) => {
+  try {
+    dispatch({ type: GENRE_LIST_ALL_REQUEST });
+
+    const { data } = await axios.get(`/api/genres/all`);
+
+    dispatch({ type: GENRE_LIST_ALL_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GENRE_LIST_ALL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

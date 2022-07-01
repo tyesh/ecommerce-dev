@@ -10,6 +10,9 @@ import {
   GENRE_DETAILS_REQUEST,
   GENRE_DETAILS_RESET,
   GENRE_DETAILS_SUCCESS,
+  GENRE_LIST_ALL_FAIL,
+  GENRE_LIST_ALL_REQUEST,
+  GENRE_LIST_ALL_SUCCESS,
   GENRE_LIST_FAIL,
   GENRE_LIST_REQUEST,
   GENRE_LIST_SUCCESS,
@@ -31,6 +34,22 @@ export const genreListReducer = (state = { genres: [] }, action) => {
         pages: action.payload.pages,
       };
     case GENRE_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const genreListAllReducer = (state = { genres: [] }, action) => {
+  switch (action.type) {
+    case GENRE_LIST_ALL_REQUEST:
+      return { loading: true, genres: [] };
+    case GENRE_LIST_ALL_SUCCESS:
+      return {
+        loading: false,
+        genres: action.payload.genres,
+      };
+    case GENRE_LIST_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
+import { Table, Button, Row, Col, Badge } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Message from '../components/Message';
@@ -91,7 +91,13 @@ const AuthorListScreen = () => {
                       <i className='fas fa-times' style={{ color: 'red' }} />
                     )}
                   </td>
-                  <td></td>
+                  <td>
+                    {author.genres.map((genre) => (
+                      <Badge key={genre._id} pill bg='primary'>
+                        {genre.name}
+                      </Badge>
+                    ))}
+                  </td>
                   <td>
                     <LinkContainer to={`/admin/authors/${author._id}/edit`}>
                       <Button variant='light' className='btn-sm'>

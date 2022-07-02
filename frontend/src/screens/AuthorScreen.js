@@ -119,18 +119,8 @@ const AuthorScreen = () => {
         setGenres(author.genres);
       }
     }
-    if (genresList.length === 0) {
-      dispatch(listAllGenres());
-    }
-  }, [
-    dispatch,
-    navigate,
-    author,
-    authorId,
-    genresList,
-    successCreate,
-    successUpdate,
-  ]);
+    dispatch(listAllGenres());
+  }, [dispatch, navigate, author, authorId, successCreate, successUpdate]);
 
   const selGenreHandler = (selectedList) => {
     setGenres(Array.from(selectedList, (x) => x.id));

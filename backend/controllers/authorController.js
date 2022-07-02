@@ -19,6 +19,7 @@ const getAuthor = expressAsyncHandler(async (req, res) => {
     : {};
   const count = await Author.count({ ...keyword });
   const authors = await Author.find({ ...keyword })
+    .populate('genres', 'id name')
     .limit(pagesize)
     .skip(pagesize * (page - 1));
 

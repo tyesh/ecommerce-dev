@@ -52,7 +52,10 @@ const AuthorScreen = () => {
   const genreListAll = useSelector((state) => state.genreListAll);
   const { loadingGenres, errorGenres, genres: genresList } = genreListAll;
 
-  const options = Array.from(genresList, (x) => ({ id: x._id, name: x.name }));
+  const options = Array.from(genresList, (x) => ({
+    _id: x._id,
+    name: x.name,
+  }));
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -101,6 +104,10 @@ const AuthorScreen = () => {
     }
   };
 
+  const selGenreHandler = (selectedList) => {
+    setGenres(Array.from(selectedList, (x) => ({ _id: x._id, name: x.name })));
+  };
+
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: AUTHOR_DETAILS_RESET });
@@ -121,10 +128,6 @@ const AuthorScreen = () => {
     }
     dispatch(listAllGenres());
   }, [dispatch, navigate, author, authorId, successCreate, successUpdate]);
-
-  const selGenreHandler = (selectedList) => {
-    setGenres(Array.from(selectedList, (x) => x.id));
-  };
 
   return (
     <>

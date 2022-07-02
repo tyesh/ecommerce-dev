@@ -40,6 +40,7 @@ import {
   authorCreateReducer,
   authorDeleteReducer,
   authorDetailReducer,
+  authorListAllReducer,
   authorListReducer,
   authorUpdateReducer,
 } from './reducers/authorReducer';
@@ -71,12 +72,13 @@ const reducer = combineReducers({
   genreCreate: genreCreateReducer,
   genreDelete: genreDeleteReducer,
   genreUpdate: genreUpdateReducer,
+  genreListAll: genreListAllReducer,
   authorList: authorListReducer,
   authorDetails: authorDetailReducer,
   authorCreate: authorCreateReducer,
   authorDelete: authorDeleteReducer,
   authorUpdate: authorUpdateReducer,
-  genreListAll: genreListAllReducer,
+  authorListAll: authorListAllReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

@@ -2,6 +2,7 @@ import express from 'express';
 import {
   createAuthor,
   deleteAuthor,
+  getAllAuthors,
   getAuthor,
   getAuthorById,
   updateAuthor,
@@ -9,6 +10,7 @@ import {
 import { protect, admin } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
+router.route('/all').get(getAllAuthors);
 router.route('/').post(protect, admin, createAuthor).get(getAuthor);
 router
   .route('/:id')

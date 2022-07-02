@@ -10,6 +10,9 @@ import {
   AUTHOR_DETAILS_REQUEST,
   AUTHOR_DETAILS_RESET,
   AUTHOR_DETAILS_SUCCESS,
+  AUTHOR_LIST_ALL_FAIL,
+  AUTHOR_LIST_ALL_REQUEST,
+  AUTHOR_LIST_ALL_SUCCESS,
   AUTHOR_LIST_FAIL,
   AUTHOR_LIST_REQUEST,
   AUTHOR_LIST_SUCCESS,
@@ -31,6 +34,22 @@ export const authorListReducer = (state = { authors: [] }, action) => {
         pages: action.payload.pages,
       };
     case AUTHOR_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const authorListAllReducer = (state = { authors: [] }, action) => {
+  switch (action.type) {
+    case AUTHOR_LIST_ALL_REQUEST:
+      return { loading: true, authors: [] };
+    case AUTHOR_LIST_ALL_SUCCESS:
+      return {
+        loading: false,
+        authors: action.payload,
+      };
+    case AUTHOR_LIST_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -9,6 +9,9 @@ import {
   AUTHOR_DETAILS_FAIL,
   AUTHOR_DETAILS_REQUEST,
   AUTHOR_DETAILS_SUCCESS,
+  AUTHOR_LIST_ALL_FAIL,
+  AUTHOR_LIST_ALL_REQUEST,
+  AUTHOR_LIST_ALL_SUCCESS,
   AUTHOR_LIST_FAIL,
   AUTHOR_LIST_REQUEST,
   AUTHOR_LIST_SUCCESS,
@@ -27,6 +30,24 @@ export const listAuthors = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: AUTHOR_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listaLLAuthors = () => async (dispatch) => {
+  try {
+    dispatch({ type: AUTHOR_LIST_ALL_REQUEST });
+
+    const { data } = await axios.get(`/api/authors/all`);
+
+    dispatch({ type: AUTHOR_LIST_ALL_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: AUTHOR_LIST_ALL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -1,7 +1,7 @@
 import expressAsyncHandler from 'express-async-handler';
 import Author from '../models/authorModel.js';
 
-// @desc    Fetch all author
+// @desc    Fetch authors
 // @route   GET /api/authors
 // æaccess  Public
 const getAuthor = expressAsyncHandler(async (req, res) => {
@@ -24,6 +24,15 @@ const getAuthor = expressAsyncHandler(async (req, res) => {
     .skip(pagesize * (page - 1));
 
   res.json({ authors, page, pages: Math.ceil(count / pagesize) });
+});
+
+// @desc    Fetch all author
+// @route   GET /api/authors/all
+// æaccess  Public
+const getAllAuthors = expressAsyncHandler(async (req, res) => {
+  const authors = await Author.find({});
+
+  res.json(authors);
 });
 
 // @desc    Fetch single author
@@ -56,7 +65,7 @@ const createAuthor = expressAsyncHandler(async (req, res) => {
     image: image,
     highlight: highlight,
     color: color,
-    genres: genres,
+    genres: Array.from(genres, (x) => x._id),
   });
 
   const createdAuthor = await author.save();
@@ -91,7 +100,7 @@ const updateAuthor = expressAsyncHandler(async (req, res) => {
     author.highlight = highlight;
     author.image = image;
     author.color = color;
-    author.genres = genres;
+    author.genres = Array.from(genres, (x) => x._id);
 
     const updatedAuthor = await author.save();
     res.status(201).json(updatedAuthor);
@@ -101,4 +110,11 @@ const updateAuthor = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { getAuthor, getAuthorById, createAuthor, deleteAuthor, updateAuthor };
+export {
+  getAuthor,
+  getAuthorById,
+  createAuthor,
+  deleteAuthor,
+  updateAuthor,
+  getAllAuthors,
+};

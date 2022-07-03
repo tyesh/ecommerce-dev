@@ -16,8 +16,7 @@ const HeroSection = () => {
               <p>
                 Bookommerce es una aplicación de muestra, enfocada en la venta
                 de libros. Todas las transacciones se pueden realizar sin costos
-                ya que corren en modo sandbox. Ante cualquier comentario, no
-                dude en utilizar el contacto.
+                ya que corren en modo sandbox.
               </p>
             </Col>
           </Row>

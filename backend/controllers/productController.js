@@ -30,7 +30,9 @@ const getProducts = expressAsyncHandler(async (req, res) => {
 // @route   GET /api/product/:id
 // æaccess  Public
 const getProductById = expressAsyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id)
+    .populate('genres', 'id name')
+    .populate('authors', 'id name');
 
   if (product) {
     res.json(product);
@@ -79,8 +81,17 @@ const CreateProduct = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // æaccess  Private/Admin
 const updateProduct = expressAsyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock } =
-    req.body;
+  const {
+    name,
+    price,
+    description,
+    image,
+    brand,
+    category,
+    countInStock,
+    genres,
+    authors,
+  } = req.body;
 
   const product = await Product.findById(req.params.id);
 
@@ -92,6 +103,8 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
     product.brand = brand;
     product.category = category;
     product.countInStock = countInStock;
+    product.genres = Array.from(genres, (x) => x._id);
+    product.authors = Array.from(authors, (x) => x._id);
 
     const updatedProduct = await product.save();
     res.status(201).json(updatedProduct);

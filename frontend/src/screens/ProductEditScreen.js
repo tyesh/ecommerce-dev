@@ -8,6 +8,9 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductDetails, updateProduct } from '../actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import Multiselect from 'multiselect-react-dropdown';
+import { listAllGenres } from '../actions/genreActions';
+import { listaLLAuthors } from '../actions/authorActions';
 
 const ProductEditScreen = () => {
   const params = useParams();
@@ -21,6 +24,8 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [genres, setGenres] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [uploading, setUploading] = useState(false);
 
   const productId = params.id;
@@ -28,12 +33,30 @@ const ProductEditScreen = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  console.log(product);
+
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
   } = productUpdate;
+
+  const genreListAll = useSelector((state) => state.genreListAll);
+  const { loadingGenres, errorGenres, genres: genresList } = genreListAll;
+
+  const authorListAll = useSelector((state) => state.authorListAll);
+  const { loadingAuthors, errorAuthors, authors: authorsList } = authorListAll;
+
+  const optionsGenres = Array.from(genresList, (x) => ({
+    _id: x._id,
+    name: x.name,
+  }));
+
+  const optionsAuthors = Array.from(authorsList, (x) => ({
+    _id: x._id,
+    name: x.name,
+  }));
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,6 +70,8 @@ const ProductEditScreen = () => {
         description,
         countInStock,
         image,
+        genres,
+        authors,
       })
     );
   };
@@ -74,6 +99,14 @@ const ProductEditScreen = () => {
     }
   };
 
+  const selGenreHandler = (selectedList) => {
+    setGenres(Array.from(selectedList, (x) => ({ _id: x._id, name: x.name })));
+  };
+
+  const selAuthorHandler = (selectedList) => {
+    setAuthors(Array.from(selectedList, (x) => ({ _id: x._id, name: x.name })));
+  };
+
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -89,8 +122,12 @@ const ProductEditScreen = () => {
         setCategory(product.category);
         setCountInStock(product.countInStock);
         setDescription(product.description);
+        setGenres(product.genres);
+        setAuthors(product.authors);
       }
     }
+    dispatch(listAllGenres());
+    dispatch(listaLLAuthors());
   }, [dispatch, navigate, product, productId, successUpdate]);
 
   return (
@@ -166,6 +203,46 @@ const ProductEditScreen = () => {
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Generos</Form.Label>
+              {loadingGenres ? (
+                <Loader />
+              ) : errorGenres ? (
+                <Message variant='danger'>{errorGenres}</Message>
+              ) : (
+                <Multiselect
+                  options={optionsGenres}
+                  selectedValues={genres}
+                  onSelect={selGenreHandler}
+                  onRemove={selGenreHandler}
+                  displayValue='name'
+                  placeholder='Seleccione genero...'
+                  onKeyPressFn={(e) => {
+                    if (e.key === 'Enter') e.preventDefault();
+                  }}
+                />
+              )}
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Autores</Form.Label>
+              {loadingAuthors ? (
+                <Loader />
+              ) : errorAuthors ? (
+                <Message variant='danger'>{errorAuthors}</Message>
+              ) : (
+                <Multiselect
+                  options={optionsAuthors}
+                  selectedValues={authors}
+                  onSelect={selAuthorHandler}
+                  onRemove={selAuthorHandler}
+                  displayValue='name'
+                  placeholder='Seleccione autor...'
+                  onKeyPressFn={(e) => {
+                    if (e.key === 'Enter') e.preventDefault();
+                  }}
+                />
+              )}
             </Form.Group>
             <Form.Group controlId='description'>
               <Form.Label>Descripción</Form.Label>

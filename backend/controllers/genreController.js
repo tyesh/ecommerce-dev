@@ -1,7 +1,7 @@
 import expressAsyncHandler from 'express-async-handler';
 import Genre from '../models/genresModel.js';
 
-// @desc    Fetch all genres
+// @desc    Fetch genres
 // @route   GET /api/genres
 // æaccess  Public
 const getGenres = expressAsyncHandler(async (req, res) => {
@@ -23,6 +23,15 @@ const getGenres = expressAsyncHandler(async (req, res) => {
     .skip(pagesize * (page - 1));
 
   res.json({ genres, page, pages: Math.ceil(count / pagesize) });
+});
+
+// @desc    Fetch all genres
+// @route   GET /api/genres/all
+// æaccess  Public
+const getAllGenres = expressAsyncHandler(async (req, res) => {
+  const genres = await Genre.find({});
+
+  res.json({ genres });
 });
 
 // @desc    Fetch single genre
@@ -95,4 +104,11 @@ const updateGenre = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { getGenres, getGenreById, createGenre, deleteGenre, updateGenre };
+export {
+  getGenres,
+  getAllGenres,
+  getGenreById,
+  createGenre,
+  deleteGenre,
+  updateGenre,
+};

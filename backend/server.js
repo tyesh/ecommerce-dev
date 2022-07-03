@@ -11,6 +11,7 @@ import userRoutes from './routes/usersRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import genreRoutes from './routes/genreRoutes.js';
 import uploadRoutes from './routes/UploadRoutes.js';
+import authorRoutes from './routes/authorRoutes.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/genres', genreRoutes);
+app.use('/api/authors', authorRoutes);
 app.use('/api/upload', uploadRoutes);
 
 app.use('/api/config/paypal', (req, res) =>

@@ -88,6 +88,11 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    highlight: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   {
     timestamps: true,

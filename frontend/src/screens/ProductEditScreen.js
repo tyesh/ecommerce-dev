@@ -26,14 +26,13 @@ const ProductEditScreen = () => {
   const [description, setDescription] = useState('');
   const [genres, setGenres] = useState([]);
   const [authors, setAuthors] = useState([]);
+  const [highlight, setHighlight] = useState(false);
   const [uploading, setUploading] = useState(false);
 
   const productId = params.id;
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
-  console.log(product);
 
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -72,6 +71,7 @@ const ProductEditScreen = () => {
         image,
         genres,
         authors,
+        highlight,
       })
     );
   };
@@ -124,6 +124,7 @@ const ProductEditScreen = () => {
         setDescription(product.description);
         setGenres(product.genres);
         setAuthors(product.authors);
+        setHighlight(product.highlight);
       }
     }
     dispatch(listAllGenres());
@@ -247,10 +248,22 @@ const ProductEditScreen = () => {
             <Form.Group controlId='description'>
               <Form.Label>Descripción</Form.Label>
               <Form.Control
+                as='textarea'
+                rows={3}
                 type='text'
                 placeholder='Ingrese descripción'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId='highlight'>
+              <Form.Check
+                type='checkbox'
+                checked={highlight}
+                label='Destacado?'
+                onChange={(e) => {
+                  setHighlight(e.target.value === 'on' ? true : false);
+                }}
               />
             </Form.Group>
             <Button className='my-3' type='submit' variant='primary'>

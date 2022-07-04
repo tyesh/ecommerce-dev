@@ -32,6 +32,14 @@ app.use('/api/genres', genreRoutes);
 app.use('/api/authors', authorRoutes);
 app.use('/api/upload', uploadRoutes);
 
+app.use('/api/config/emailjs', (req, res) =>
+  res.json({
+    REACT_APP_EMAIL_SERVICE: process.env.REACT_APP_EMAIL_SERVICE,
+    REACT_APP_TEMPLATE_ID: process.env.REACT_APP_TEMPLATE_ID,
+    REACT_APP_EMAILJS_KEY: process.env.REACT_APP_EMAILJS_KEY,
+  })
+);
+
 app.use('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );

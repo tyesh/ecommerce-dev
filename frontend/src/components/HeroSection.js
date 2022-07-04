@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const HeroSection = () => {
   return (
@@ -31,9 +32,11 @@ const HeroSection = () => {
               >
                 Màs información
               </Button>
-              <Button type='button' variant='secondary' className='mb-2'>
-                Contacto
-              </Button>
+              <LinkContainer to={`/contact`}>
+                <Button type='button' variant='secondary' className='mb-2'>
+                  Contacto
+                </Button>
+              </LinkContainer>
             </Col>
           </Row>
         </div>

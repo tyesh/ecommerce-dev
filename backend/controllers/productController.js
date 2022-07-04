@@ -71,6 +71,7 @@ const CreateProduct = expressAsyncHandler(async (req, res) => {
     countInStock: 0,
     numReviews: 0,
     description: 'Sample description',
+    highlight: false,
   });
 
   const createdProduct = await product.save();
@@ -91,6 +92,7 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
     countInStock,
     genres,
     authors,
+    highlight,
   } = req.body;
 
   const product = await Product.findById(req.params.id);
@@ -105,6 +107,7 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
     product.countInStock = countInStock;
     product.genres = Array.from(genres, (x) => x._id);
     product.authors = Array.from(authors, (x) => x._id);
+    product.highlight = highlight;
 
     const updatedProduct = await product.save();
     res.status(201).json(updatedProduct);

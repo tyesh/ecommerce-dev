@@ -23,6 +23,7 @@ import GenresScreen from './screens/GenresScreen';
 import GenresListScreen from './screens/GenresListScreen';
 import AuthorListScreen from './screens/AuthorListScreen';
 import AuthorScreen from './screens/AuthorScreen';
+import ContactScreen from './screens/ContactScreen';
 
 const App = () => {
   return (
@@ -75,6 +76,7 @@ const App = () => {
                 element={<AuthorScreen />}
               />
               <Route path='/about' element={<AboutScreen />} />
+              <Route path='/contact' element={<ContactScreen />} />
             </Routes>
           </Container>
         </main>

@@ -101,6 +101,7 @@ const ProductListScreen = () => {
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Precio</th>
+                <th>Destacado?</th>
                 <th>Categoría</th>
                 <th></th>
               </tr>
@@ -111,6 +112,13 @@ const ProductListScreen = () => {
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
+                  <td>
+                    {product.highlight ? (
+                      <i className='fas fa-check' style={{ color: 'green' }} />
+                    ) : (
+                      <i className='fas fa-times' style={{ color: 'red' }} />
+                    )}
+                  </td>
                   <td>{product.category}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>

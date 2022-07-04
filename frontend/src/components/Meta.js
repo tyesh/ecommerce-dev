@@ -7,13 +7,13 @@ const Meta = ({ title, description, keywords }) => {
       <title>{title}</title>
       <meta name='description' content={description} />
       <meta name='keyword' content={keywords} />
-      <meta property='og:title' content='Bienvenido a Bookommerce' />
-      <meta property='og:image' content='%PUBLIC_URL%/images/preview.png' />
+      <meta name='og:title' content='Bienvenido a Bookommerce' />
+      <meta name='og:image' content='%PUBLIC_URL%/images/preview.png' />
       <meta
-        property='og:description'
+        name='og:description'
         content='Compre los mejores libros al mejor precio.'
       />
-      <meta property='og:url' content='https://www.carlosportafolio.com/' />
+      <meta name='og:url' content='https://www.carlosportafolio.com/' />
     </Helmet>
   );
 };

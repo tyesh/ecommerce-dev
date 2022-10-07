@@ -16,7 +16,7 @@
   <h3 align="center">Bookommerce</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An ecommerce app made with Node.js and React.js
     <br />
     <a href="https://github.com/tyesh/ecommerce-dev"><strong>Explore the docs »</strong></a>
     <br />

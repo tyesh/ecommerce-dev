@@ -137,7 +137,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - carlos.velazquez91@gmail.com
+Email - carlos.velazquez91@gmail.com
 
 Project Link: [https://carlosecommerceapp.herokuapp.com/](https://carlosecommerceapp.herokuapp.com/)
 
